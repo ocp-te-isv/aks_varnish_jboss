@@ -23,7 +23,7 @@ However, we plan to optimize and simplify by using a WAF infront of the varnish 
 ![aks heirarchical overview](./images/aks_arc_overview_2.png)
 
 
-You can use the following sections to get more information:
+You can use the following sections to get more information, they are designed to be followed in order:
 
 ## [Dependencies](./dependecies.md)
 
