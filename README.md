@@ -31,8 +31,8 @@ You can use the following sections to get more information:
 
 ## [Setup of POC](poc_setup.md)
 
-## Preparing Docker Images
+## [Preparing Docker Images](./docker_image_prep.md)
 
-## Cleanup
+## [Cleanup](./cleanup.md)
 
 

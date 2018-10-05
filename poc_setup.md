@@ -39,6 +39,32 @@ to verify that the nodes are online and running, using the following command:
 kubectl get nodes
 ```
 
+### Step 3 - Initialize Helm
+
+In order to use Helm, we need to initialize it.  
+Before that, we need to create a service account for helm to use called "tiller".  
+
+Assuming you have cloned this repo, use the following command to create the tiller account:
+
+```shell
+kubectl create -f ./aks_setup_yaml_files/rbac.yaml
+```
+
+This should result in the account being added in the cluster role bindings:  
+
+![kubectl tiller](./images/kubectl_tiller_create.png)
+
+This will allow us to use the helm charts to publish services and configure AKS.  
+We then initialize Helm on our local system, to use this tiller account with:
+
+```shell
+helm init --service-account tiller
+```
+
+Resulting in
+
+![helm init](./images/helm_init.png)
+
 ### Step 3 - Prepare and publish docker images
 
 Now, if you have not already done so, go [here](./docker_prep.md) to prepare and publish your docker images.
