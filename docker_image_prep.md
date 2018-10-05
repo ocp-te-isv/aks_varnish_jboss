@@ -25,8 +25,11 @@ docker tag jboss:v0.1 akspoc.azurecr.io/jboss:v0.1
 docker push akspoc.azurecr.io/jboss:v0.1
 ```
 
+The resulting output looks as follows:
 
-Details of the changes are described below:
+![jboss push](./images/jboss_push.png)
+
+Details of the changes made to the jboss sample are described in the notice file.
 
 
 
