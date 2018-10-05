@@ -14,7 +14,14 @@ Azure Kubernetes Service (AKS) will be used to host the varnish and jboss compon
 
 In a later stage, CDN will be used to offload requests for static content from the main cloud infrastructure.  
 
+A typical setup would use an ingress controller via nginx:
+
 ![aks heirarchical overview](./images/aks_arc_overview.png)
+
+However, we plan to optimize and simplify by using a WAF infront of the varnish cache, to save on the need for an ingress controller:
+
+![aks heirarchical overview](./images/aks_arc_overview_2.png)
+
 
 You can use the following sections to get more information:
 
@@ -24,6 +31,8 @@ You can use the following sections to get more information:
 
 ## [Setup of POC](poc_setup.md)
 
+## Preparing Docker Images
 
+## Cleanup
 
 
