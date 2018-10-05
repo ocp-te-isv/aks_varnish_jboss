@@ -1,5 +1,7 @@
 # High Performance JBoss hosting in AKS, using Varnish, CDN and MySQL.
 
+Please note that this documentation is in progress, and as such should not be relied upon!
+
 ## Overview
 
 The solution will be hosted in Azure.
@@ -20,7 +22,7 @@ You can use the following sections to get more information:
 
 ## [Setup of Pre-Requisites](pre-req_setup.md)
 
-
+## [Setup of POC](poc_setup.md)
 
 
 
