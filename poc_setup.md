@@ -65,9 +65,68 @@ Resulting in
 
 ![helm init](./images/helm_init.png)
 
+You can validate that Helm is properly initialized by running
+
+```shell
+kubectl -n kube-system get deployments
+```
+
+This will show the "tiller-deploy" deployment
+
+![tiller deployed](./images/tiller_deployed.png)
+
+
 ### Step 3 - Prepare and publish docker images
 
 Now, if you have not already done so, go [here](./docker_prep.md) to prepare and publish your docker images.
 
+### Step 4 - Give AKS Access to the registry
+
+https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks
+
+
 ### Step 4 - Prepare the helm charts
+
+We have supplied some sample Helm charts for our Jboss / Wildfly sample under ./helmcharts/jbossappserver.
+
+These define the parameters for deploying packages to the kubernetes cluster.
+
+Before deploying to your own cluster, you will need to modify the ./helmcharts/jbossappserver/values.yaml as follows:
+
+- line 11 - under image, change repository to match where you published your images.
+- Optional - only if we were using an Ingress controller, we would need to also update  
+    we are using a load balancer in the sample architecture, so this is not necessary.
+    - line 32 - under hosts - to match our DNS endpoint & host name (for routing the requests)
+    - line 34 - if using the let's encrypt and cert manager to enable TLS, we would need to update host name and secrets here.
+
+Once the Heml chart's value.yaml has been updated, we can deploy.
+
+if you want to double check the tags you used when deploying to acr... you can use something like:
+
+```shell
+az acr repository show-tags --name akspoc --repository jboss
+```
+
+otherwise, just deploy with Helm using:
+
+```shell
+Helm upgrade --install --wait --set image.tag=v0.1 jbossappserver .
+```
+
+You will see, that helm indicates that the release "jbossappserver" does not exist, and deployment begins:
+
+
+![helm jbossappserver upgrade](./images/helm_jbossappserver_upgrade.png)
+
+while you wait for it to finish setting up, you can use the following to check on the status:
+
+```shell
+kubectl get deployments
+```
+
+or
+
+kubectl get pods
+
+then 
 
