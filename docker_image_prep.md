@@ -37,3 +37,18 @@ VARNISH
 
 The Varnish cache images are taken from [https://hub.docker.com/r/million12/varnish/](https://hub.docker.com/r/million12/varnish/).
 
+We pull locally, retag, then push to our Azure Container Registry:
+
+```shell
+# pull
+docker pull million12/varnish
+
+# tag for our Azure registry
+docker tag million12/varnish akspoc.azurecr.io/varnish:v1.0
+
+# login to azure container registry
+az acr login --name akspoc
+
+# push
+docker push akspoc.azurecr.io/varnish:v1.0
+```

@@ -14,16 +14,29 @@ az login
 # Create a resource group in which we will place the components to be used in the POC
 az group create --name AKS_POC --location WestEurope
 
+# Create the Network and Subnets
+az network vnet create --name pocVNet --resource-group AKS_POC --location westeurope --address-prefix 10.1.0.0/16 --subnet-name gatewaySubnet --subnet-prefix 10.1.1.0/24
+
+az network vnet subnet create --name aksSubnet --resource-group AKS_POC --vnet-name pocVNet --address-prefix 10.1.2.0/24
+
+az network public-ip create --resource-group AKS_POC --name gatewayPublicIPAddress
+
+# store the network object for later (this is powershell)
+$network = az network vnet subnet list --resource-group AKS_POC --vnet-name pocVnet --query [].id --output tsv | sls backend | select -exp line
+
 # Create an Azure Container Registry for publishing and to store our images
 az acr create --name akspoc --resource-group AKS_POC --sku Basic
 
 # Create an AKS Cluster, with node count of 1 (as this is the initial configuration for POC) node type and count can be adjusted as needed. RBAC is enabled by default.
-az aks create --resource-group AKS_POC --name WebAppPOC --node-count 1 --enable-addons monitoring
+az aks create --resource-group AKS_POC --name WebAppPOC --network-plugin azure --vnet-subnet-id $network --docker-bridge-address 172.17.0.1/16 --dns-service-ip 10.2.0.10 --service-cidr 10.2.0.0/24 --node-count 1 --enable-addons monitoring
 ```
 
 Azure will take a little while to provision all the required resources:
 
 ![waiting for AKS provisioning](./images/aks_create_waiting.png)
+
+You can open a parallel shell session, and execute the following commands to create the Web Application Firewall / Application Gateway (Available as create_WAF_network script in the **./scripts** folder):
+
 
 ### Step 2 - Configure AKS creds & validate
 
@@ -47,7 +60,7 @@ Before that, we need to create a service account for helm to use called "tiller"
 Assuming you have cloned this repo, use the following command to create the tiller account:
 
 ```shell
-kubectl create -f ./aks_setup_yaml_files/rbac.yaml
+kubectl create -f ./aks_setup_yaml_files/rbac_for_tiller.yaml
 ```
 
 This should result in the account being added in the cluster role bindings:  
@@ -82,8 +95,13 @@ Now, if you have not already done so, go [here](./docker_prep.md) to prepare and
 
 ### Step 4 - Give AKS Access to the registry
 
+Full details are here:
+
 https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks
 
+You can also use the bash or powershell scripts that we have provided under ./scripts
+
+Please ensure that you modify the names of the resources to match your environment!
 
 ### Step 4 - Prepare the helm charts
 
@@ -107,10 +125,11 @@ if you want to double check the tags you used when deploying to acr... you can u
 az acr repository show-tags --name akspoc --repository jboss
 ```
 
-otherwise, just deploy with Helm using:
+otherwise, just deploy with Helm, ensuring you change to the ./helm/jbossappserver folder in the shell,  using:
 
 ```shell
-Helm upgrade --install --wait --set image.tag=v0.1 jbossappserver .
+# from within the ./helm/jbossappserver folder
+helm upgrade --install --wait --set image.tag=v0.1 jbossappserver .
 ```
 
 You will see, that helm indicates that the release "jbossappserver" does not exist, and deployment begins:
@@ -128,5 +147,10 @@ or
 
 kubectl get pods
 
-then 
+then run the following to install the varnish cache:
 
+cd ../varnish
+
+```shell
+helm upgrade --install --wait --set image.tag=v1.0 varnish .
+```
