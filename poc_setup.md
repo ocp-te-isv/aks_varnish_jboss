@@ -31,13 +31,16 @@ $network = az network vnet subnet list --resource-group AKS_POC --vnet-name pocV
 az acr create --name akspoc --resource-group AKS_POC --sku Basic
 
 # Create an AKS Cluster, with node count of 1 (as this is the initial configuration for POC) node type and count can be adjusted as needed. RBAC is enabled by default.
-az aks create --resource-group AKS_POC --name WebAppPOC --network-plugin azure --vnet-subnet-id $network --docker-bridge-address 172.17.0.1/16 --dns-service-ip 10.2.0.10 --service-cidr 10.2.0.0/24 --node-count 1 --enable-addons monitoring
+# The --node-vm-size option is important, as it will define our unit of scale, and must provide appropriate resources for the varnish cache (large memory allocation) currently set to Standard_M16ms
+# see https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-memory#m-series
+az aks create --resource-group AKS_POC --name WebAppPOC --network-plugin azure --vnet-subnet-id $network --docker-bridge-address 172.17.0.1/16 --dns-service-ip 10.2.0.10 --service-cidr 10.2.0.0/24 --node-count 1 --enable-addons monitoring --node-vm-size Standard_M16ms
 ```
 
 Azure will take a little while to provision all the required resources:
 
 ![waiting for AKS provisioning](./images/aks_create_waiting.png)
 
+More on **az aks create** can be found here: https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest#az-aks-create
 
 Note:
 Currently WAF is not available in an Autoscaling SKU, as per https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-autoscaling-zone-redundant
