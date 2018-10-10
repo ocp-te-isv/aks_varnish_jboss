@@ -31,6 +31,11 @@ The resulting output looks as follows:
 
 Details of the changes made to the jboss sample are described in the notice file.
 
+## Mounting Azure Storage:
+
+https://kubernetes.io/docs/concepts/storage/volumes/
+
+https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv
 
 
 VARNISH
@@ -52,3 +57,8 @@ az acr login --name akspoc
 # push
 docker push akspoc.azurecr.io/varnish:v1.0
 ```
+
+Varnish clustering:
+
+https://docs.varnish-software.com/varnish-high-availability/autoscaling/
+

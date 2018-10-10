@@ -6,6 +6,7 @@ We shall setup the various components to host the web apps and assocaited storag
 ### Step 1 - Create the first resources
 
 Run the following commands in a shell which has the Azure CLI available.
+This codfe 
 
 ```shell
 # Login to Azure with the CLI
@@ -21,6 +22,8 @@ az network vnet subnet create --name aksSubnet --resource-group AKS_POC --vnet-n
 
 az network public-ip create --resource-group AKS_POC --name gatewayPublicIPAddress
 
+az network application-gateway create --resource-group AKS_POC --name akswaf --sku WAF_Large --subnet gatewaySubnet --vnet-name pocVNet --public-ip-address gatewayPublicIPAddress
+
 # store the network object for later (this is powershell)
 $network = az network vnet subnet list --resource-group AKS_POC --vnet-name pocVnet --query [].id --output tsv | sls backend | select -exp line
 
@@ -35,7 +38,10 @@ Azure will take a little while to provision all the required resources:
 
 ![waiting for AKS provisioning](./images/aks_create_waiting.png)
 
-You can open a parallel shell session, and execute the following commands to create the Web Application Firewall / Application Gateway (Available as create_WAF_network script in the **./scripts** folder):
+
+Note:
+Currently WAF is not available in an Autoscaling SKU, as per https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-autoscaling-zone-redundant
+Once this feature is availble for WAF, it should be activated to reduce the complexity of the deployment, as we need to script the scale up and down of WAF resources.
 
 
 ### Step 2 - Configure AKS creds & validate
@@ -104,6 +110,9 @@ You can also use the bash or powershell scripts that we have provided under ./sc
 Please ensure that you modify the names of the resources to match your environment!
 
 ### Step 4 - Prepare the helm charts
+
+To find out more about Helm, check out [https://helm.sh/](https://helm.sh/)
+Helm gives us an additional layer ontop of Kubernetes to manage packages and desired state configuration. 
 
 We have supplied some sample Helm charts for our Jboss / Wildfly sample under ./helmcharts/jbossappserver.
 
