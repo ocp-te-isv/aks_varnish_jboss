@@ -22,6 +22,9 @@ However, we plan to optimize and simplify by using a WAF infront of the varnish 
 
 ![aks hierarchical overview](./images/aks_arc_overview_2.png)
 
+The architecture requires the following network configuration:
+
+![solution network](./images/solution_networking_0.1.PNG)
 
 You can use the following sections to get more information, they are designed to be followed in order:
 
@@ -29,9 +32,11 @@ You can use the following sections to get more information, they are designed to
 
 ## [Setup of Pre-Requisites](pre-req_setup.md)
 
+## [Preparing Docker Images](./docker_image_prep.md)
+
 ## [Setup of POC](poc_setup.md)
 
-## [Preparing Docker Images](./docker_image_prep.md)
+## [MySQL Configuration](./mysql_configuration.md)
 
 ## [Cleanup](./cleanup.md)
 
