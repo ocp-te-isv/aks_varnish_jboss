@@ -1,6 +1,6 @@
-Docker Image Preparation
+# Docker Image Preparation
 
-JBOSS
+## JBOSS
 
 The Jboss image is derived from the Wildfly samples found here.  
 These are provided under an Apache License.  
@@ -27,18 +27,18 @@ docker push akspoc.azurecr.io/jboss:v0.1
 
 The resulting output looks as follows:
 
-![jboss push](./images/jboss_push.png)
+![jboss push](./images/jboss_push.PNG)
 
 Details of the changes made to the jboss sample are described in the notice file.
 
-## Mounting Azure Storage:
+### Mounting Azure Storage:
 
 https://kubernetes.io/docs/concepts/storage/volumes/
 
 https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv
 
 
-VARNISH
+## VARNISH
 
 The Varnish cache images are taken from [https://hub.docker.com/r/million12/varnish/](https://hub.docker.com/r/million12/varnish/).
 
