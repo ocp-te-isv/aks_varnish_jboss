@@ -28,7 +28,7 @@ The architecture requires the following network configuration:
 
 You can use the following sections to get more information, they are designed to be followed in order:
 
-## [Dependencies](./dependecies.md)
+## [Dependencies](./dependencies.md)
 
 ## [Setup of Pre-Requisites](pre-req_setup.md)
 
