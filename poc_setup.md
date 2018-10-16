@@ -1,4 +1,4 @@
-## Setup Procedure
+# Setup Procedure
 
 Here we prepare the clound environment in which we shall be running the POC.  
 We shall setup the various components to host the web apps and assocaited storage and caches.  

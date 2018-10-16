@@ -36,6 +36,8 @@ You can use the following sections to get more information, they are designed to
 
 ## [Setup of POC](poc_setup.md)
 
+## [WAF Setup](waf_setup.md)
+
 ## [MySQL Configuration](./mysql_configuration.md)
 
 ## [Cleanup](./cleanup.md)

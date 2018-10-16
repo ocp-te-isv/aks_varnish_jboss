@@ -12,5 +12,6 @@ COPY . /src/
 RUN mvn package
 
 FROM jboss/wildfly:14.0.1.Final AS base
+COPY ./standalone.xml /opt/jboss/wildfly/standalone/configuration/standalone.xml
 COPY --from=build-env /src/helloworld-rs/target/helloworld-rs.war /opt/jboss/wildfly/standalone/deployments/
 

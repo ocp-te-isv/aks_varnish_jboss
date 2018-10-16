@@ -30,6 +30,9 @@ spec:
             - name: admin
               containerPort: 9990
               protocol: TCP
+          volumeMounts:
+            - name: azure
+              mountPath: /mnt/azure
           livenessProbe:
             httpGet:
               path: /
@@ -52,3 +55,9 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+      volumes:
+        - name: azure
+          azureFile:
+            secretName: azure-secret
+            shareName: aksshare
+            readOnly: false
