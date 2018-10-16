@@ -19,8 +19,7 @@ This coupled with the limits of any in memory cache vs the number of different r
 
 CDN offloads the job of serving static data and binary data to our users, by placing it in globally distributed caches provided by CDN partners like Akamai, Verizon and now recently also Azure CDN services.  
 
-The benefits are not only seen in terms of reduced bandwidth / egress costs (reduced as this is the unit of charge for CDN providers), but also in terms of scalability of the web servers and varnish caches, as they no longer need to process and render binary content in memory. 
-
+The benefits are not only seen in terms of reduced bandwidth / egress costs (reduced as this is the unit of charge for CDN providers), but also in terms of scalability of the web servers and varnish caches, as they no longer need to process, render and serve binary content. 
 
 
 ![page_with_cdn_with_varnish](./images/page_with_cdn_with_varnish.PNG)
