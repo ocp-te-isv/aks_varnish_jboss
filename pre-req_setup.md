@@ -22,3 +22,9 @@ We use Chocolatey (from an elevated shell session) to install Helm:
 choco install kubernetes-helm
 ```
  
+Alternatively, you can use homebrew on Mac OS:
+```shell
+brew install kubernetes-helm
+```
+Other setup options can be found here:
+[https://github.com/helm/helm#install](https://github.com/helm/helm#install)

@@ -29,5 +29,3 @@ We used [Chocolatey](https://chocolatey.org/docs/installation) to install helm, 
 choco install kubernetes-helm
 ```
 
-Other setup options can be found here:
-[https://github.com/helm/helm#install](https://github.com/helm/helm#install)

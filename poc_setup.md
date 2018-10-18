@@ -129,7 +129,11 @@ Before deploying to your own cluster, you will need to modify the ./helmcharts/j
     - line 32 - under hosts - to match our DNS endpoint & host name (for routing the requests)
     - line 34 - if using the let's encrypt and cert manager to enable TLS, we would need to update host name and secrets here.
 
-Once the Heml chart's value.yaml has been updated, we can deploy.
+Once the Heml chart's value.yaml has been updated, we can deploy.  
+
+**NOTE: We have modified the templates/service.yaml to include the mount point binding for a static Azure Storage Files share** 
+
+See also: https://docs.microsoft.com/en-us/azure/aks/azure-files-volume
 
 if you want to double check the tags you used when deploying to acr... you can use something like:
 

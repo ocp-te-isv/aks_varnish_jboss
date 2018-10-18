@@ -35,8 +35,7 @@ Details of the changes made to the jboss sample are described in the notice file
 
 https://kubernetes.io/docs/concepts/storage/volumes/
 
-https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv
-
+https://docs.microsoft.com/en-us/azure/aks/azure-files-volume
 
 ## VARNISH
 
