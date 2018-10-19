@@ -139,7 +139,7 @@ Before deploying to your own cluster, you will need to modify the ./helmcharts/j
 
 Once the Heml chart's value.yaml has been updated, we can deploy.  
 
-**NOTE: We have modified the templates/service.yaml to include the mount point binding for a static Azure Storage Files share** 
+**NOTE: We have modified the templates/deployment.yaml to include the mount point binding for a static Azure Storage Files share** 
 
 See also: https://docs.microsoft.com/en-us/azure/aks/azure-files-volume
 
