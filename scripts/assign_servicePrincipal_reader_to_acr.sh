@@ -1,6 +1,11 @@
 #!/bin/bash
 az login
 
+# if you have multiple subscriptions, 
+# and the one we need is not default use the following to set the
+# correct subscription for AKS
+# az account set --subscription <subscription id> 
+
 AKS_RESOURCE_GROUP=AKS_POC
 AKS_CLUSTER_NAME=WebAppPOC
 ACR_RESOURCE_GROUP=AKS_POC

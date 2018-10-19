@@ -34,7 +34,12 @@ az acr create --name akspoc --resource-group AKS_POC --sku Basic
 # The --node-vm-size option is important, as it will define our unit of scale, and must provide appropriate resources for the varnish cache (large memory allocation) currently set to Standard_M16ms
 # see https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-memory#m-series
 az aks create --resource-group AKS_POC --name WebAppPOC --network-plugin azure --vnet-subnet-id $network --docker-bridge-address 172.17.0.1/16 --dns-service-ip 10.2.0.10 --service-cidr 10.2.0.0/24 --node-count 1 --enable-addons monitoring --node-vm-size Standard_M16ms
+# If you have no SSH keys configured, you will need to use the --generate-ssh-keys option. 
 ```
+
+**Note: If you used the --generate-ssh-keys option, make sure you back up the keys (which are used to log into the VM) created by the command!**
+
+**Note: If you do not specify a service principal, one will be created for you as per https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal, this will then be used for all aks create commands, which may be relevant if you want to have different service principals per cluster, and multiple ACRs with different ACLs. If that is the case, please create service principals per cluster.** 
 
 Azure will take a little while to provision all the required resources:
 
@@ -53,8 +58,11 @@ When finished, you can use the following command to create a local entry on your
 ```shell
 az aks get-credentials -g AKS_POC -n WebAppPOC
 ```
+
+**Note : For other users to be able to access the AKS (k8s) cluster, they can use the same command to get these keys locally.**
+
 You will see the resulting output indicating that the credentials are merged into a local credentials file:
-![AKS cred merge](./images/aks_get_credentials.png)
+![AKS cred merge](./images/aks_get_credentials.PNG)
 
 to verify that the nodes are online and running, using the following command:
 ```shell
@@ -74,7 +82,7 @@ kubectl create -f ./aks_setup_yaml_files/rbac_for_tiller.yaml
 
 This should result in the account being added in the cluster role bindings:  
 
-![kubectl tiller](./images/kubectl_tiller_create.png)
+![kubectl tiller](./images/kubectl_tiller_create.PNG)
 
 This will allow us to use the helm charts to publish services and configure AKS.  
 We then initialize Helm on our local system, to use this tiller account with:

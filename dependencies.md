@@ -29,3 +29,8 @@ We used [Chocolatey](https://chocolatey.org/docs/installation) to install helm, 
 choco install kubernetes-helm
 ```
 
+On Mac OS, we used brew to install:
+
+```shell
+brew install kubernetes-helm
+```
