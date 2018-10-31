@@ -32,6 +32,8 @@ You can use the following sections to get more information, they are designed to
 
 ## [Setup of Pre-Requisites](pre-req_setup.md)
 
+## [Why CDN?](why_cdn.md)
+
 ## [Preparing Docker Images](./docker_image_prep.md)
 
 ## [Setup of POC](poc_setup.md)
@@ -39,6 +41,8 @@ You can use the following sections to get more information, they are designed to
 ## [WAF Setup](waf_setup.md)
 
 ## [MySQL Configuration](./mysql_configuration.md)
+
+## [Monitoring & scaling during the POC](monitoring_scaling.md)
 
 ## [Cleanup](./cleanup.md)
 

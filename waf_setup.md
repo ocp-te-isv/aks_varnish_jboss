@@ -61,9 +61,10 @@ az network application-gateway frontend-port create -g AKS_POC --gateway-name ak
 # create an HTTPs Listener to use the cert created above
 az network application-gateway http-listener create --frontend-ip appGatewayFrontendIP --frontend-port HttpsPort --gateway-name akswaf --resource-group AKS_POC --name appGatewayHttpsListener --ssl-cert AksCert
 
+
 #create a backend address pool
 az network application-gateway address-pool create -g AKS_POC --gateway-name akswaf -n AksLBAddressPool --servers 10.0.2.35
 
 # create a rule to route traffic to AKS
-az network application-gateway rule create -g AKS_POC --gateway-name akswaf -n RouteForAks --http-listener appGatewayHttpsListener --rule-type Basic --http-settings AksWafHttpsSettings --address-pool AksLBAddressPool
+az network application-gateway rule create -g AKS_POC --gateway-name akswaf -n RouteForAks2 --http-listener appGatewayHttpsListener --rule-type Basic --http-settings BackendHttpSettings --address-pool AksLBAddressPool
 ```
