@@ -6,7 +6,13 @@ These can be pinned to a dashboard for convenience during the POC:
 ![waf performance](./images/waf_performance.PNG)
 
 
-The WAF can be scaled dynamically via the GUI, there should be no downtime for this action:
+The WAF can be scaled dynamically via command line:
+
+```shell
+ az network application-gateway update -g AKS_POC -n akswaf --capacity <number of instances you need here>
+```
+
+or the GUI, there should be no downtime for this action:
 
 1. Select the WAF
 2. Select Configuration
