@@ -1,5 +1,7 @@
 # Tuning and Scaling AKS
 
+[Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 Throughput and performance of the AKS nodes and application instances can be monitored via the metrics shown in the insights section, as well as in the logs if container logging is being used for metric evaluation.
 
 Application performance telemetry can also be routed to [ApplicationInsights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview).
@@ -13,13 +15,21 @@ In such a case, it is important that the limits for the containers are set in th
 
 ![helm resource settings](./images/helm_resource_settings.PNG)
 
-Scale nodes:
+### Scale nodes:
 
 ```shell
 az aks scale --name Varnish --node-count 2 --resource-group AKS_POC --no-wait
 ```
 
 ![scale aks node image](./images/scale_aks_nodes.PNG)
+
+### Scale Instances:
+
+Scale instances of a replica set once enough nodes are available:
+
+```shell
+kubectl scale --replicas=3 pocnamespace/varnish
+```
 
 ![scale aks instances image](./images/scale_aks_instances.PNG)
 
