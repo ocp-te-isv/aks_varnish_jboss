@@ -13,3 +13,9 @@ When viewing the ACL on the Azure CR, if you go too deep into the ACL, if you de
 
 See also:  
 https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal
+
+Be sure to set memory limits for the Java VM POD instances
+
+Be sure to set the Java VM Heap Opts for the Java VM (-Xmx<desired limit in Mb>m)
+
+see also https://developers.redhat.com/blog/2017/03/14/java-inside-docker/
