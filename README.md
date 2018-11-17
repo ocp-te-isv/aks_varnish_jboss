@@ -26,6 +26,12 @@ The architecture requires the following network configuration:
 
 ![solution network](./images/solution_networking_0.1.PNG)
 
+Update:
+
+The following describes the architecture we are testing in more detail:
+
+## [POC Architecture](poc_architecture.md)
+
 You can use the following sections to get more information, they are designed to be followed in order:
 
 ## [Dependencies](./dependencies.md)
