@@ -11,7 +11,7 @@ to scale up to 4 instances during peak load
 
 ## AKS Varnish
 
-Following some investigation, it was deemed that the 4 Varnish servers currently in use in the data center could be replaced by either 1 or 2 single instances.  
+Following some investigation, it was deemed that the 4 Varnish servers currently in use in the data center could be replaced by either 1 or 2 single instances for Peak load.  
 
 Based on the current differences in performance characteristics and node size, varnish instances currently need to be housed in their own AKS cluster (AKS nodepools currently only support a single VM node size) or on dedicated VMs.
 
@@ -23,7 +23,9 @@ Current sizes which are being considered to achieve peak performance:
 ## AKS Wildfly
 
 Wildfly instances are planned to be run with 4 vCores and 4 GB RAM, at a concentration of 4 instances per AKS node.  
-The assumption is that the majority of load measured on the hardware instances was related to the MySQL traffic, which was co-hosted with 4 Wildfly instances.
+The assumption is that the majority of load measured on the hardware instances was related to the MySQL traffic, which was co-hosted with 4 Wildfly instances.  
+
+We currently plan with 6 instances during peak load.
 
 This assumption is being validated in the application performance tests.
 
