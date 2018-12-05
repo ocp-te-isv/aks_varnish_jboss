@@ -67,3 +67,5 @@ This in turn is reducing the serial request processing, requiring a system which
 ### Redis Cache
 
 Potentially, calls to the MySQL database can be cached in an object store like Redis to reduce calls to the database and the need to scale up the number of VCores.
+
+This performance enhancement could be shared across all WildFly instances and could be preloaded to reduce any artifacts from sudden spikes in traffic, upgrades or restarting systems.

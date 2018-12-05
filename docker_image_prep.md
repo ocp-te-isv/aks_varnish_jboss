@@ -1,10 +1,12 @@
 # Docker Image Preparation
 
-## JBOSS
+## JBOSS / WildFly
 
 The Jboss image is derived from the Wildfly samples found here.  
 These are provided under an Apache License.  
 [https://github.com/wildfly/quickstart/tree/master/helloworld-rs](https://github.com/wildfly/quickstart/tree/master/helloworld-rs)
+
+Note: As we are using a Java VM and Java Version 8, you must limit the memory usage by the Java VM, as well as set the request limits with the 
 
 You can create the docker image from the ./jboss folder by running:
 
