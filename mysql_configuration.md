@@ -20,5 +20,5 @@ https://docs.microsoft.com/en-us/cli/azure/mysql/server/vnet-rule?view=azure-cli
 ## Scaling  
 As scaling operations will cause DBs to drop clients we should scale DBs outside of main working hours.
 
-We can create an LB to balance requests and ensure that scaling MySQL replicas do not cause issues for clients, however client code must implement retry logic for connections.
+Client code must implement retry logic for connections.
 
