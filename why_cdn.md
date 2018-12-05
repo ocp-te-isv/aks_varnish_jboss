@@ -23,3 +23,4 @@ The benefits are not only seen in terms of reduced bandwidth / egress costs (red
 
 
 ![page_with_cdn_with_varnish](./images/page_with_cdn_with_varnish.PNG)
+
