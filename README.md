@@ -1,6 +1,6 @@
 # High Performance JBoss / Wildfly hosting in AKS, using Varnish, CDN and MySQL.
 
-# Please note that this documentation an performance testing is currently in progress, and as such should not be relied upon until complete! All content is subject to change.
+## Please note that this documentation an performance testing is currently in progress, and as such should not be relied upon until complete! All content is subject to change.
 
 ## Overview
 
