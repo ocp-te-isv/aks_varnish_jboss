@@ -93,7 +93,7 @@ helm init --service-account tiller
 
 Resulting in
 
-![helm init](./images/helm_init.png)
+![helm init](./images/helm_init.PNG)
 
 You can validate that Helm is properly initialized by running
 
@@ -103,7 +103,7 @@ kubectl -n kube-system get deployments
 
 This will show the "tiller-deploy" deployment
 
-![tiller deployed](./images/tiller_deployed.png)
+![tiller deployed](./images/tiller_deployed.PNG)
 
 
 ### Step 3 - Prepare and publish docker images
