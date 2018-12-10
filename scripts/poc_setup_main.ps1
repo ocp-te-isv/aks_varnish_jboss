@@ -16,7 +16,7 @@ az network public-ip create --resource-group AKS_POC --name gatewayPublicIPAddre
 az network application-gateway create --resource-group AKS_POC --name akswaf --sku WAF_Large --subnet gatewaySubnet --vnet-name pocVNet --public-ip-address gatewayPublicIPAddress
 
 # store the network object for later (this is powershell)
-$network = az network vnet subnet list --resource-group AKS_POC --vnet-name pocVnet --query [].id --output tsv | sls backend | select -exp line
+$network = az network vnet subnet list --resource-group AKS_POC --vnet-name pocVnet --query [].id --output tsv | sls aksSubnet | select -exp line
 
 # Create an Azure Container Registry for publishing and to store our images
 az acr create --name akspoc --resource-group AKS_POC --sku Basic
