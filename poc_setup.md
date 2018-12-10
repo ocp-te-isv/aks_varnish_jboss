@@ -159,7 +159,7 @@ helm upgrade --install --wait --set image.tag=v0.1 jbossappserver .
 You will see, that helm indicates that the release "jbossappserver" does not exist, and deployment begins:
 
 
-![helm jbossappserver upgrade](./images/helm_jbossappserver_upgrade.png)
+![helm jbossappserver upgrade](./images/helm_jbossappserver_upgrade.PNG)
 
 while you wait for it to finish setting up, you can use the following to check on the status:
 
